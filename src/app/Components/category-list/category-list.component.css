@@ -1,0 +1,21 @@
+aside
+{
+    width:19%;
+    float:right;
+    height:1000px;
+}
+aside h3{
+    margin:30px 20px 0;
+    font-size:large;
+    font-family:Cardo;
+}
+aside ul
+{
+    margin:20px 10px;
+}
+aside li
+{
+    list-style:none;
+    transition:background-color 1s;
+    padding:15px 0;
+}

@@ -1,0 +1,15 @@
+<form (ngSubmit)="AddOrEdit()">
+    <input type="text" placeholder="הכנס שם בגד" [(ngModel)]="clothing_service.clothing.name" name="name"><br><br>
+    <p>הכנס קטגוריה</p>
+    <select [(ngModel)] ="clothing_service.clothing.category_id" name="category_name">
+            <option *ngFor="let item of category_service.l_categories" value="{{item.id}}">{{item.name}}</option>
+    </select><br><br>
+    <input type="text" placeholder="הכנס מחיר" [(ngModel)]="clothing_service.clothing.price" name="price"><br><br>
+    <input type="color" placeholder="הכנס צבע" [(ngModel)]="clothing_service.clothing.color" name="color"><br><br>
+    <input type="file" בחר תמונה [(ngModel)]="clothing_service.clothing.img" name="img"><br><br>
+    <input type="text" placeholder="הכנס מידה" [(ngModel)]="clothing_service.clothing.size" name="size"><br><br>
+    <input type="text" placeholder="הכנס כמות" [(ngModel)]="clothing_service.clothing.amount" name="amount"><br><br>
+    <input type="submit" אישור>
+
+    <!-- לבדוק איך אפשר לשמור את הנתיב האמיתי של הקובץ שנבחר -->
+</form>

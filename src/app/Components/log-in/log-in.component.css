@@ -1,0 +1,31 @@
+.show_pass
+{
+background-image: url(../../../assets/Images/pass-eye.png);
+background-repeat: no-repeat;
+background-position: center;
+height: 17px;
+width: 23px;
+position: absolute;
+left: 7px;
+transform: translateY(-50%);
+top: 21px;
+}
+
+/* span
+{
+    -webkit-tap-highlight-color: transparent;
+font-size: 14px;
+line-height: 1.42857;
+color: #333;
+font-family: Assistant,sans-serif;
+text-align: center;
+box-sizing: border-box;
+position: relative;
+display: block;
+margin: 0 auto;
+width: 256px;
+} */
+input
+{
+    text-align: right;
+}

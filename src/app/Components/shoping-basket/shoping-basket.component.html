@@ -1,0 +1,22 @@
+<div class="container" style="align-content: right;">
+    <div *ngFor="let clothingShoping of basket_service.items_in_basket;" style="text-align: right;float: right;">          
+        
+        <!-- let clothing of basket_service.items_in_basket_type_clothing; -->
+        <!-- <div *ngFor="let item of basket_service.unit_lists" style="text-align: right;float: right;">           -->
+
+        <!-- <td><img src="http://localhost:57650/Images/{{clothing.img}}" width="300" height="300" style="align-self:center;"></td> -->
+        <p>שם בגד: {{clothingShoping.cloth_name}}</p>
+        <p>מחיר ליחידה: {{clothingShoping.price_for_one| currency:'ILS':true}}</p>
+        <p> המחיר לתשלום: {{clothingShoping.final_price | currency:'ILS':true}}</p>
+        <input type="number" [(ngModel)]="clothingShoping.amount" (blur)="basket_service.updatePrice(clothingShoping.cloth_id)">
+         :כמות שהזמנת         
+        <button (click)="DeleteFromBasket(clothingShoping.cloth_id)">מחיקה</button>
+    </div>
+<div *ngIf="basket_service.items_in_basket.length!=0" style="float: right;">
+    <p> מחיר סופי: {{basket_service.calculatePrice() | currency:'ILS':true}}</p>
+    <button (click)="PerformShoping()" class="btn btn-success"  [disabled]="client_service.client.id==undefined">ביצוע קניה</button>
+    <div *ngIf="client_service.client.id==undefined">על מנת לבצע קניה יש לבצע התחברות/ הרשמה</div>
+</div>
+<p *ngIf="basket_service.items_in_basket.length==0">סל הקניות ריק כרגע</p>
+<p *ngIf="result==true"> !! קנייה בוצעה בהצלחה</p>
+</div>

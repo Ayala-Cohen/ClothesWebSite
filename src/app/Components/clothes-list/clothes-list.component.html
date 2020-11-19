@@ -1,0 +1,12 @@
+<div class="container" style="text-align: right;">
+  <div class="row">
+    <div class="card" style="width:300px ;float: right;" *ngFor="let item of clothing_service.l_clothes">
+      <img class="card-img-top" src="http://localhost:57650/Images/{{item.img}}" alt="Card image" style="width:100%">
+      <div class="card-body">
+        <h4 class="card-title">{{item.name}}</h4>
+        <a [routerLink]="['/ClothesDetails',item.id]" class="btn btn-info">פרטים נוספים</a>
+      </div>
+    </div>
+  </div>
+  <br>
+</div>

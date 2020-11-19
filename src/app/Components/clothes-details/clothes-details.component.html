@@ -1,0 +1,24 @@
+
+<div class="container">
+    <div class="card" style="width:200px" style="text-align: right;">
+      <img class="card-img-top" src="http://localhost:57650/Images/{{item.img}}" alt="Card image" style="width:60%">
+      <div class="card-body">
+        <h4 class="card-title">{{item.name}}</h4>
+        <p class="card-text"> קטגוריה :{{item.category_name}} </p>
+        <p class="card-text">מחיר: {{item.price |currency:'ILS':true}}</p>
+    
+        <p class="card-text"> מידה:{{item.size}}</p>
+        <p class="card-text"> כמות במלאי:{{item.amount}}</p>      
+        <button [routerLink]="['/AddOrEditClothing',item.id]" class="btn btn-info" *ngIf="client_service.client.client_kind==1">ערוך</button>
+        <button (click)="Delete(item.id)" class="btn btn-info" *ngIf="client_service.client.client_kind==1">מחק</button>
+        <input type="number" placeholder="הכנס כמות" name="amountInput"
+            [(ngModel)]="basket_service.new_item_in_basket.amount" #AmountInput="ngModel">
+        <button type="button" title="הוספה לסל" class="btn btn-info" (click)="AddToBasket()" name="AddingBasket" [disabled]="item.amount < AmountInput.value">הוספה לסל</button>
+        <div *ngIf="item.amount < AmountInput.value">אין מספיק במלאי</div>
+        <p *ngIf="result==true"> !!פריט {{item.name}} נוסף לסל</p>
+      </div>
+    </div>
+    <br>
+  </div>
+
+

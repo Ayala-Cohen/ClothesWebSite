@@ -1,0 +1,34 @@
+
+<!-- תפריט עליון -->
+<nav class="navbar navbar-expand-sm bg-light" style="direction: rtl;">
+    <ul class="nav navbar-nav">
+      <li class="nav-item">
+        <a [routerLink]="['ShopingBasket']" class="nav-link">סל קניות</a>
+      </li>
+      <li class="nav-item dropdown" *ngIf="client_service.client.id!=undefined">
+        <a  class="nav-link dropdown-toggle" data-toggle="dropdown" >{{client_service.client.name}}</a>
+          <div class="dropdown-menu">
+              <label class="dropdown-item" (click)="GetOut()">יציאה</label>
+          </div>
+      </li>
+      <li class="nav-item" *ngIf="client_service.client.id==undefined">
+        <a [routerLink]="['LogIn']" class="nav-link" >התחבר</a>
+      </li>
+      <li>
+        <a [routerLink]="['HomePage']" class="nav-link">עמוד הבית</a>
+      </li>
+      <li>
+        <a [routerLink]="['/AddOrEditCategory']" *ngIf="client_service.client.client_kind==1">הוסף קטגוריה</a>
+
+      </li>
+      <li>
+        <a [routerLink]="['/AddOrEditClothing',undefined]" *ngIf="client_service.client.client_kind==1"
+        class="nav-link">הוסף בגד</a>
+      </li>
+    </ul>      
+  </nav>
+
+
+  
+
+

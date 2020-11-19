@@ -1,0 +1,21 @@
+<div class="container" style="float: right;">
+<form (ngSubmit)="CheckIfExist()" #LogInForm="ngForm" >
+  <input type="text" required class="form-control col"
+    placeholder="הכנס שם משתמש - כתובת הדואר האלקטרוני שאיתו נרשמת" [(ngModel)]="client_service.client.user_name"
+    name="id" #UserName="ngModel"><br><br>
+  <div class="alert-danger col-xl-6" *ngIf="UserName.touched && UserName.invalid">
+    <p *ngIf="UserName.errors.required">שדה חובה</p>
+  </div>
+  <div>
+    <input type="password" required class="form-control col-xl-6" placeholder="הכנס סיסמה"
+      [(ngModel)]="client_service.client.client_password" name="password" #Password="ngModel" appShowPassword><br><br>
+  </div>
+  <div class="alert-danger col-lg-4" *ngIf="Password.touched && Password.invalid">
+    <p *ngIf="Password.errors.required">שדה חובה</p>
+  </div>
+  <input type="submit" class="btn btn-primary" [disabled]="LogInForm.form.invalid" value="אישור">
+</form>
+
+
+<a [routerLink]="['/SignIn']" >צור חשבון חדש</a>
+</div>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="52759d3f285a42fe8b0f3dd60a31a473" Name="Diagram1">
+        <EntityTypeShape EntityType="ClothesWebDBModel.categoryTBL" Width="1.5" PointX="1" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesWebDBModel.clientsTBL" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesWebDBModel.clothesTBL" Width="1.5" PointX="3.625" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesWebDBModel.shopingDetailsTBL" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesWebDBModel.shopingsTBL" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="ClothesWebDBModel.FK__clothesTB__categ__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesWebDBModel.FK__shopingsT__clien__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesWebDBModel.FK__shopingDe__cloth__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesWebDBModel.FK__shopingDe__shopi__36B12243" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

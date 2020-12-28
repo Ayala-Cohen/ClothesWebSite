@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ClothesWebDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categoryTBL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="clientsTBL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" />
+          <Property Name="client_password" Type="varchar" MaxLength="20" />
+          <Property Name="credit_card" Type="bigint" />
+          <Property Name="client_kind" Type="int" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="clothesTBL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" />
+          <Property Name="category_id" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="img" Type="varchar" MaxLength="200" />
+          <Property Name="color" Type="varchar" MaxLength="20" />
+          <Property Name="size" Type="int" />
+          <Property Name="amount" Type="int" />
+        </EntityType>
+        <EntityType Name="shopingDetailsTBL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shoping_id" Type="int" />
+          <Property Name="cloth_id" Type="int" />
+          <Property Name="amount" Type="int" />
+        </EntityType>
+        <EntityType Name="shopingsTBL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_id" Type="int" />
+          <Property Name="shoping_date" Type="date" />
+          <Property Name="sum_for_paying" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <Association Name="FK__clothesTB__categ__4E88ABD4">
+          <End Role="categoryTBL" Type="Self.categoryTBL" Multiplicity="0..1" />
+          <End Role="clothesTBL" Type="Self.clothesTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoryTBL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clothesTBL">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__shopingDe__cloth__52593CB8">
+          <End Role="clothesTBL" Type="Self.clothesTBL" Multiplicity="0..1" />
+          <End Role="shopingDetailsTBL" Type="Self.shopingDetailsTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clothesTBL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shopingDetailsTBL">
+              <PropertyRef Name="cloth_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__shopingDe__shopi__5165187F">
+          <End Role="shopingsTBL" Type="Self.shopingsTBL" Multiplicity="0..1" />
+          <End Role="shopingDetailsTBL" Type="Self.shopingDetailsTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shopingsTBL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shopingDetailsTBL">
+              <PropertyRef Name="shoping_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__shopingsT__clien__412EB0B6">
+          <End Role="clientsTBL" Type="Self.clientsTBL" Multiplicity="0..1" />
+          <End Role="shopingsTBL" Type="Self.shopingsTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientsTBL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shopingsTBL">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClothesWebDBModelStoreContainer">
+          <EntitySet Name="categoryTBL" EntityType="Self.categoryTBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clientsTBL" EntityType="Self.clientsTBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clothesTBL" EntityType="Self.clothesTBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shopingDetailsTBL" EntityType="Self.shopingDetailsTBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shopingsTBL" EntityType="Self.shopingsTBL" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__clothesTB__categ__4E88ABD4" Association="Self.FK__clothesTB__categ__4E88ABD4">
+            <End Role="categoryTBL" EntitySet="categoryTBL" />
+            <End Role="clothesTBL" EntitySet="clothesTBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__shopingDe__cloth__52593CB8" Association="Self.FK__shopingDe__cloth__52593CB8">
+            <End Role="clothesTBL" EntitySet="clothesTBL" />
+            <End Role="shopingDetailsTBL" EntitySet="shopingDetailsTBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__shopingDe__shopi__5165187F" Association="Self.FK__shopingDe__shopi__5165187F">
+            <End Role="shopingsTBL" EntitySet="shopingsTBL" />
+            <End Role="shopingDetailsTBL" EntitySet="shopingDetailsTBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__shopingsT__clien__412EB0B6" Association="Self.FK__shopingsT__clien__412EB0B6">
+            <End Role="clientsTBL" EntitySet="clientsTBL" />
+            <End Role="shopingsTBL" EntitySet="shopingsTBL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClothesWebDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="categoryTBL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clothesTBL" Relationship="Self.FK__clothesTB__categ__267ABA7A" FromRole="categoryTBL" ToRole="clothesTBL" />
+        </EntityType>
+        <EntityType Name="clientsTBL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="client_password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="credit_card" Type="Int64" />
+          <NavigationProperty Name="shopingsTBL" Relationship="Self.FK__shopingsT__clien__33D4B598" FromRole="clientsTBL" ToRole="shopingsTBL" />
+          <Property Name="client_kind" Type="Int32" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="clothesTBL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="category_id" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="img" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="color" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="size" Type="Int32" />
+          <Property Name="amount" Type="Int32" />
+          <NavigationProperty Name="categoryTBL" Relationship="Self.FK__clothesTB__categ__267ABA7A" FromRole="clothesTBL" ToRole="categoryTBL" />
+          <NavigationProperty Name="shopingDetailsTBL" Relationship="Self.FK__shopingDe__cloth__37A5467C" FromRole="clothesTBL" ToRole="shopingDetailsTBL" />
+        </EntityType>
+        <EntityType Name="shopingDetailsTBL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shoping_id" Type="Int32" />
+          <Property Name="cloth_id" Type="Int32" />
+          <Property Name="amount" Type="Int32" />
+          <NavigationProperty Name="clothesTBL" Relationship="Self.FK__shopingDe__cloth__37A5467C" FromRole="shopingDetailsTBL" ToRole="clothesTBL" />
+          <NavigationProperty Name="shopingsTBL" Relationship="Self.FK__shopingDe__shopi__36B12243" FromRole="shopingDetailsTBL" ToRole="shopingsTBL" />
+        </EntityType>
+        <EntityType Name="shopingsTBL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client_id" Type="Int32" />
+          <Property Name="shoping_date" Type="DateTime" Precision="0" />
+          <Property Name="sum_for_paying" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="clientsTBL" Relationship="Self.FK__shopingsT__clien__33D4B598" FromRole="shopingsTBL" ToRole="clientsTBL" />
+          <NavigationProperty Name="shopingDetailsTBL" Relationship="Self.FK__shopingDe__shopi__36B12243" FromRole="shopingsTBL" ToRole="shopingDetailsTBL" />
+        </EntityType>
+        <Association Name="FK__clothesTB__categ__267ABA7A">
+          <End Role="categoryTBL" Type="Self.categoryTBL" Multiplicity="0..1" />
+          <End Role="clothesTBL" Type="Self.clothesTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoryTBL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clothesTBL">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__shopingsT__clien__33D4B598">
+          <End Role="clientsTBL" Type="Self.clientsTBL" Multiplicity="0..1" />
+          <End Role="shopingsTBL" Type="Self.shopingsTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientsTBL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shopingsTBL">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__shopingDe__cloth__37A5467C">
+          <End Role="clothesTBL" Type="Self.clothesTBL" Multiplicity="0..1" />
+          <End Role="shopingDetailsTBL" Type="Self.shopingDetailsTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clothesTBL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shopingDetailsTBL">
+              <PropertyRef Name="cloth_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__shopingDe__shopi__36B12243">
+          <End Role="shopingsTBL" Type="Self.shopingsTBL" Multiplicity="0..1" />
+          <End Role="shopingDetailsTBL" Type="Self.shopingDetailsTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shopingsTBL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shopingDetailsTBL">
+              <PropertyRef Name="shoping_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClothesWebDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categoryTBL" EntityType="Self.categoryTBL" />
+          <EntitySet Name="clientsTBL" EntityType="Self.clientsTBL" />
+          <EntitySet Name="clothesTBL" EntityType="Self.clothesTBL" />
+          <EntitySet Name="shopingDetailsTBL" EntityType="Self.shopingDetailsTBL" />
+          <EntitySet Name="shopingsTBL" EntityType="Self.shopingsTBL" />
+          <AssociationSet Name="FK__clothesTB__categ__267ABA7A" Association="Self.FK__clothesTB__categ__267ABA7A">
+            <End Role="categoryTBL" EntitySet="categoryTBL" />
+            <End Role="clothesTBL" EntitySet="clothesTBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__shopingsT__clien__33D4B598" Association="Self.FK__shopingsT__clien__33D4B598">
+            <End Role="clientsTBL" EntitySet="clientsTBL" />
+            <End Role="shopingsTBL" EntitySet="shopingsTBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__shopingDe__cloth__37A5467C" Association="Self.FK__shopingDe__cloth__37A5467C">
+            <End Role="clothesTBL" EntitySet="clothesTBL" />
+            <End Role="shopingDetailsTBL" EntitySet="shopingDetailsTBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__shopingDe__shopi__36B12243" Association="Self.FK__shopingDe__shopi__36B12243">
+            <End Role="shopingsTBL" EntitySet="shopingsTBL" />
+            <End Role="shopingDetailsTBL" EntitySet="shopingDetailsTBL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ClothesWebDBModelStoreContainer" CdmEntityContainer="ClothesWebDBEntities">
+          <EntitySetMapping Name="categoryTBL">
+            <EntityTypeMapping TypeName="ClothesWebDBModel.categoryTBL">
+              <MappingFragment StoreEntitySet="categoryTBL">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientsTBL">
+            <EntityTypeMapping TypeName="ClothesWebDBModel.clientsTBL">
+              <MappingFragment StoreEntitySet="clientsTBL">
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="client_kind" ColumnName="client_kind" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="client_password" ColumnName="client_password" />
+                <ScalarProperty Name="credit_card" ColumnName="credit_card" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clothesTBL">
+            <EntityTypeMapping TypeName="ClothesWebDBModel.clothesTBL">
+              <MappingFragment StoreEntitySet="clothesTBL">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shopingDetailsTBL">
+            <EntityTypeMapping TypeName="ClothesWebDBModel.shopingDetailsTBL">
+              <MappingFragment StoreEntitySet="shopingDetailsTBL">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="shoping_id" ColumnName="shoping_id" />
+                <ScalarProperty Name="cloth_id" ColumnName="cloth_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shopingsTBL">
+            <EntityTypeMapping TypeName="ClothesWebDBModel.shopingsTBL">
+              <MappingFragment StoreEntitySet="shopingsTBL">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="shoping_date" ColumnName="shoping_date" />
+                <ScalarProperty Name="sum_for_paying" ColumnName="sum_for_paying" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

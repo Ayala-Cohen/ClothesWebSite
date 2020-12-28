@@ -1,7 +1,4 @@
-               
-         <a class="nav-link" (click)="OpenCustomizedList()">{{cetegory.name}} </a>       
-        <button (click)="Edit(cetegory)"  [routerLink]="['AddOrEditCategory']" *ngIf="client_service.client.client_kind==1"class="btn btn-info" >ערוך</button> 
-        <button (click)="Delete(cetegory.id)" *ngIf="client_service.client.client_kind==1" class="btn btn-danger">מחק</button>
-
-
-        
+<a class="nav-link" (click)="OpenCustomizedList()">{{cetegory.name}} </a>
+<button (click)="Edit(cetegory)" [routerLink]="['AddOrEditCategory']" *ngIf="client_service.client.client_kind==1"
+    class="btn btn-info">ערוך</button>
+<button (click)="Delete(cetegory.id)" *ngIf="client_service.client.client_kind==1" class="btn btn-danger">מחק</button>
